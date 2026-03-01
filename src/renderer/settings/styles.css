@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+.settings-app {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 180px;
+  background: #16162a;
+  padding: 20px 0;
+  border-right: 1px solid #2a2a4a;
+  flex-shrink: 0;
+}
+
+.sidebar h2 {
+  padding: 0 20px 16px;
+  font-size: 18px;
+  color: #7b7bff;
+  border-bottom: 1px solid #2a2a4a;
+  margin-bottom: 8px;
+}
+
+.tabs {
+  list-style: none;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #888;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: #bbb;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tab.active {
+  color: #e0e0e0;
+  background: rgba(123, 123, 255, 0.1);
+  border-left: 3px solid #7b7bff;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 24px 32px;
+  overflow-y: auto;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.tab-panel h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+/* Setting rows */
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #2a2a4a;
+}
+
+.setting-row span {
+  font-size: 14px;
+}
+
+.setting-row input[type="text"],
+.setting-row input[type="password"],
+.setting-row select {
+  background: #222244;
+  border: 1px solid #3a3a5a;
+  color: #e0e0e0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  width: 200px;
+}
+
+.setting-row input[type="range"] {
+  width: 200px;
+}
+
+.setting-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #7b7bff;
+}
+
+/* Buttons */
+.btn-primary {
+  margin-top: 16px;
+  padding: 8px 20px;
+  background: #7b7bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-primary:hover {
+  background: #6a6aee;
+}
+
+/* Dictionary / Snippets add row */
+.dict-add,
+.snippet-add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dict-add input,
+.snippet-add input,
+.snippet-add select {
+  background: #222244;
+  border: 1px solid #3a3a5a;
+  color: #e0e0e0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  flex: 1;
+}
+
+.dict-add button,
+.snippet-add button {
+  padding: 6px 14px;
+  background: #7b7bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* Item list */
+.item-list {
+  list-style: none;
+}
+
+.item-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #1e1e3a;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.item-list li .remove-btn {
+  background: none;
+  border: none;
+  color: #ff5555;
+  cursor: pointer;
+  font-size: 14px;
+}

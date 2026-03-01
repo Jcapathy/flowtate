@@ -1,0 +1,38 @@
+{
+  "name": "flowtate",
+  "version": "1.0.0",
+  "description": "System-wide AI voice dictation with translation",
+  "main": "dist/main/index.js",
+  "author": "Jesse Capathy",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && electron-builder",
+    "build:vite": "tsc && vite build",
+    "start": "electron dist/main/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@nut-tree-fork/nut-js": "^4.2.0",
+    "electron-store": "^8.2.0",
+    "electron-updater": "^6.3.9",
+    "node-global-key-listener": "^0.3.0",
+    "openai": "^4.77.0"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vite-plugin-electron": "^0.28.8",
+    "vite-plugin-electron-renderer": "^0.14.6"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild"
+    ]
+  }
+}

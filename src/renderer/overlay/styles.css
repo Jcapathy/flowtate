@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+  user-select: none;
+  -webkit-app-region: no-drag;
+}
+
+.overlay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 24px;
+  background: rgba(20, 20, 30, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.overlay.recording,
+.overlay.processing {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #555;
+  transition: background 0.3s ease;
+}
+
+.overlay.recording .dot {
+  background: #ff4444;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.overlay.processing .dot {
+  background: #ffaa00;
+  animation: spin 1s linear infinite;
+}
+
+.overlay.idle .dot {
+  background: #555;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.label {
+  color: #eee;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.overlay.recording .label { color: #ff6666; }
+.overlay.processing .label { color: #ffcc44; }
+
+.language-badge {
+  background: rgba(255, 255, 255, 0.15);
+  color: #aaa;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

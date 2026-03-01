@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowtate Settings</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="settings-app">
+    <nav class="sidebar">
+      <h2>Flowtate</h2>
+      <ul class="tabs">
+        <li class="tab active" data-tab="general">General</li>
+        <li class="tab" data-tab="hotkeys">Hotkeys</li>
+        <li class="tab" data-tab="language">Language</li>
+        <li class="tab" data-tab="audio">Audio</li>
+        <li class="tab" data-tab="formatting">Formatting</li>
+        <li class="tab" data-tab="dictionary">Dictionary</li>
+        <li class="tab" data-tab="snippets">Snippets</li>
+        <li class="tab" data-tab="api-keys">API Keys</li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <!-- General -->
+      <section id="tab-general" class="tab-panel active">
+        <h3>General</h3>
+        <label class="setting-row">
+          <span>Start on login</span>
+          <input type="checkbox" id="startOnLogin" />
+        </label>
+        <label class="setting-row">
+          <span>Show in taskbar</span>
+          <input type="checkbox" id="showInTaskbar" />
+        </label>
+        <label class="setting-row">
+          <span>Theme</span>
+          <select id="theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+      </section>
+
+      <!-- Hotkeys -->
+      <section id="tab-hotkeys" class="tab-panel">
+        <h3>Hotkeys</h3>
+        <label class="setting-row">
+          <span>Dictation hotkey</span>
+          <input type="text" id="dictationHotkey" readonly placeholder="Click and press keys..." />
+        </label>
+        <label class="setting-row">
+          <span>Command hotkey</span>
+          <input type="text" id="commandHotkey" readonly placeholder="Click and press keys..." />
+        </label>
+        <label class="setting-row">
+          <span>Cancel hotkey</span>
+          <input type="text" id="cancelHotkey" readonly placeholder="Click and press keys..." />
+        </label>
+        <label class="setting-row">
+          <span>Dictation mode</span>
+          <select id="dictationMode">
+            <option value="toggle">Toggle (press to start/stop)</option>
+            <option value="ptt">Push-to-talk (hold to record)</option>
+          </select>
+        </label>
+      </section>
+
+      <!-- Language -->
+      <section id="tab-language" class="tab-panel">
+        <h3>Language & Translation</h3>
+        <label class="setting-row">
+          <span>Enable translation</span>
+          <input type="checkbox" id="translationEnabled" />
+        </label>
+        <label class="setting-row">
+          <span>Input language</span>
+          <select id="inputLanguage">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="pt">Portuguese</option>
+            <option value="it">Italian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="zh">Chinese</option>
+            <option value="ar">Arabic</option>
+            <option value="ru">Russian</option>
+            <option value="hi">Hindi</option>
+          </select>
+        </label>
+        <label class="setting-row">
+          <span>Output language(s)</span>
+          <input type="text" id="outputLanguages" placeholder="en, es" />
+        </label>
+        <label class="setting-row">
+          <span>Multi-language format</span>
+          <select id="multiLangFormat">
+            <option value="stacked">Stacked (one per line)</option>
+            <option value="side-by-side">Side by side (A | B)</option>
+            <option value="parenthetical">Parenthetical</option>
+          </select>
+        </label>
+      </section>
+
+      <!-- Audio -->
+      <section id="tab-audio" class="tab-panel">
+        <h3>Audio</h3>
+        <label class="setting-row">
+          <span>Input device</span>
+          <select id="inputDevice"></select>
+        </label>
+        <label class="setting-row">
+          <span>Sensitivity</span>
+          <input type="range" id="audioSensitivity" min="0" max="100" />
+        </label>
+      </section>
+
+      <!-- Formatting -->
+      <section id="tab-formatting" class="tab-panel">
+        <h3>AI Formatting</h3>
+        <label class="setting-row">
+          <span>Enable AI formatting</span>
+          <input type="checkbox" id="aiFormattingEnabled" />
+        </label>
+        <label class="setting-row">
+          <span>Remove filler words</span>
+          <input type="checkbox" id="removeFillersEnabled" />
+        </label>
+        <label class="setting-row">
+          <span>Grammar correction</span>
+          <input type="checkbox" id="grammarCorrectionEnabled" />
+        </label>
+      </section>
+
+      <!-- Dictionary -->
+      <section id="tab-dictionary" class="tab-panel">
+        <h3>Personal Dictionary</h3>
+        <div class="dict-add">
+          <input type="text" id="dictWord" placeholder="Word or phrase" />
+          <input type="text" id="dictCategory" placeholder="Category" value="general" />
+          <button id="dictAddBtn">Add</button>
+        </div>
+        <ul id="dictList" class="item-list"></ul>
+      </section>
+
+      <!-- Snippets -->
+      <section id="tab-snippets" class="tab-panel">
+        <h3>Voice Snippets</h3>
+        <div class="snippet-add">
+          <input type="text" id="snippetTrigger" placeholder="Trigger phrase" />
+          <select id="snippetType">
+            <option value="text-expansion">Text Expansion</option>
+            <option value="language-switch">Language Switch</option>
+            <option value="action">Action</option>
+          </select>
+          <input type="text" id="snippetValue" placeholder="Text / language / action" />
+          <button id="snippetAddBtn">Add</button>
+        </div>
+        <ul id="snippetList" class="item-list"></ul>
+      </section>
+
+      <!-- API Keys -->
+      <section id="tab-api-keys" class="tab-panel">
+        <h3>API Keys</h3>
+        <label class="setting-row">
+          <span>OpenAI API Key</span>
+          <input type="password" id="openaiApiKey" placeholder="sk-..." />
+        </label>
+        <label class="setting-row">
+          <span>Anthropic API Key</span>
+          <input type="password" id="anthropicApiKey" placeholder="sk-ant-..." />
+        </label>
+        <button id="saveApiKeys" class="btn-primary">Save Keys</button>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="./settings.ts"></script>
+</body>
+</html>

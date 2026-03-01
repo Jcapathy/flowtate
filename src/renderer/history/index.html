@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowtate History</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="history-app">
+    <header>
+      <h2>Dictation History</h2>
+      <input type="text" id="search" placeholder="Search..." />
+    </header>
+
+    <div class="stats-bar" id="stats">
+      <span id="totalWords">0 words</span>
+      <span id="totalSessions">0 sessions</span>
+      <span id="avgWords">0 avg</span>
+      <span id="timeSaved">0m saved</span>
+    </div>
+
+    <ul class="history-list" id="historyList"></ul>
+  </div>
+  <script type="module" src="./history.ts"></script>
+</body>
+</html>
