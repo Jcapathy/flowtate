@@ -102,6 +102,10 @@ function createSettingsWindow(): BrowserWindow {
     win.loadFile(join(__dirname, '../renderer/src/renderer/settings/index.html'));
   }
 
+  win.webContents.on('did-fail-load', (_e, code, desc) => {
+    console.error(`Settings window failed to load: ${code} ${desc}`);
+  });
+
   win.on('closed', () => {
     settingsWindow = null;
   });
@@ -329,47 +333,63 @@ function setupIPC(): void {
 
 // ─── App Lifecycle ───
 
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception:', err);
+});
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled rejection:', err);
+});
+
 app.whenReady().then(() => {
-  overlayWindow = createOverlayWindow();
-  initAudio(overlayWindow);
-  setupIPC();
+  console.log('Flowtate starting...');
 
-  // Set up hotkey callbacks
-  setHotkeyCallbacks({
-    onDictationStart: () => {
-      startCapture();
-      broadcastState('recording');
-    },
-    onDictationStop: () => {
-      if (isCommandMode) {
-        handleCommandStop();
-      } else {
-        handleDictationStop();
-      }
-    },
-    onCommandStart: () => {
-      handleCommandStart();
-    },
-    onCancel: () => {
-      clearCapture();
-      isCommandMode = false;
-      commandModeSelectedText = '';
-      broadcastState('idle');
-    },
-  });
+  try {
+    overlayWindow = createOverlayWindow();
+    initAudio(overlayWindow);
+    setupIPC();
 
-  registerHotkeys();
+    // Set up hotkey callbacks
+    setHotkeyCallbacks({
+      onDictationStart: () => {
+        startCapture();
+        broadcastState('recording');
+      },
+      onDictationStop: () => {
+        if (isCommandMode) {
+          handleCommandStop();
+        } else {
+          handleDictationStop();
+        }
+      },
+      onCommandStart: () => {
+        handleCommandStart();
+      },
+      onCancel: () => {
+        clearCapture();
+        isCommandMode = false;
+        commandModeSelectedText = '';
+        broadcastState('idle');
+      },
+    });
 
-  createTray({
-    onToggleDictation: () => {
-      // Toggle via tray
-      startCapture();
-      broadcastState('recording');
-    },
-    onOpenSettings: () => createSettingsWindow(),
-    onOpenHistory: () => createHistoryWindow(),
-    onQuit: () => app.quit(),
-  });
+    registerHotkeys();
+
+    createTray({
+      onToggleDictation: () => {
+        startCapture();
+        broadcastState('recording');
+      },
+      onOpenSettings: () => createSettingsWindow(),
+      onOpenHistory: () => createHistoryWindow(),
+      onQuit: () => app.quit(),
+    });
+
+    // Open settings on first launch so user sees something
+    createSettingsWindow();
+    console.log('Flowtate ready.');
+  } catch (err) {
+    console.error('Startup error:', err);
+  }
 });
 
 app.on('will-quit', () => {
