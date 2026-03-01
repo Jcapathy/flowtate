@@ -5,7 +5,7 @@ import type { TranslationConfig, FormattingProfile } from '../shared/types';
 let client: Anthropic | null = null;
 
 function getClient(): Anthropic {
-  const apiKey = getSetting('anthropicApiKey');
+  const apiKey = getSetting('anthropicApiKey') || process.env.ANTHROPIC_API_KEY || '';
   if (!client || (client as any).apiKey !== apiKey) {
     client = new Anthropic({ apiKey });
   }

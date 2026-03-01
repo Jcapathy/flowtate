@@ -15,6 +15,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@nut-tree-fork/nut-js": "^4.2.0",
+    "dotenv": "^17.3.1",
     "electron-store": "^8.2.0",
     "electron-updater": "^6.3.9",
     "node-global-key-listener": "^0.3.0",

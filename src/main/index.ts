@@ -1,3 +1,9 @@
+import { config } from 'dotenv';
+import { join as pathJoin } from 'path';
+
+// Load .env from project root (works both in dev and packaged)
+config({ path: pathJoin(__dirname, '../../.env') });
+
 import {
   app,
   BrowserWindow,

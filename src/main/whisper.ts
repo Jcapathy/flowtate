@@ -8,7 +8,7 @@ import { randomUUID } from 'crypto';
 let client: OpenAI | null = null;
 
 function getClient(): OpenAI {
-  const apiKey = getSetting('openaiApiKey');
+  const apiKey = getSetting('openaiApiKey') || process.env.OPENAI_API_KEY || '';
   if (!client || (client as any).apiKey !== apiKey) {
     client = new OpenAI({ apiKey });
   }
